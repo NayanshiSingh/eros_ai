@@ -36,7 +36,6 @@ The platform uses a unified **Shared Session Core** for both chat and voice inte
 2.  **During Session:** Purely Redis-backed operations. The LLM emits a decision token (`SEARCH` or `NO_SEARCH`) to determine if a sub-500ms Gemini memory retrieval step is needed before responding.
 3.  **Session Teardown:** Redis states are flushed to MongoDB and async background jobs (curation, personality updates, diary generation) are enqueued via ARQ.
 
-For a deeper dive, check out the [Platform & Code Architecture](./platform-architecture.md) and the [Product Requirements Document (PRD)](./eros-prd.md).
 
 ---
 
@@ -135,8 +134,4 @@ We welcome contributions! Please follow these guidelines:
 4.  **Create a Branch:** `git checkout -b feature/your-feature-name`
 5.  **Commit and Push:** Write clear, descriptive commit messages. Provide a detailed PR description.
 
----
 
-## 📜 License
-
-[Add License Information Here]
