@@ -1,7 +1,5 @@
 *.md
 .agents/
 AGENTS.md
-eros-prd.md
-implementation-plan.md
-platform-architecture.md
-todo-list.md
+documentation/
+!README.md

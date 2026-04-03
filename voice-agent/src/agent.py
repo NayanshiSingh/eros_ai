@@ -12,11 +12,18 @@ Architecture:
 import asyncio
 import logging
 import os
+import sys
 from collections.abc import Coroutine
 from livekit.agents import AgentSession, inference
 from dotenv import load_dotenv
-from livekit.plugins import google
 
+# Robustly load .env from the voice-agent root directory EARLY before anything else
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+load_dotenv(os.path.join(root_dir, ".env.local"))
+load_dotenv(os.path.join(root_dir, ".env"))
+
+from livekit.plugins import google
 from livekit import rtc
 from livekit.agents import (
     Agent,
@@ -40,10 +47,6 @@ configure_logging()
 logger = logging.getLogger("voice-agent")
 INITIAL_GREETING = "Hey, I'm here with you. What's on your mind?"
 DEEPGRAM_TTS_MODEL = "aura-2-helena-en"
-
-load_dotenv(".env.local")
-load_dotenv(".env")
-
 
 class CompanionAgent(Agent):
     """Voice agent that delegates intelligence to the FastAPI backend.
